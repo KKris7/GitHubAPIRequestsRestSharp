@@ -20,11 +20,8 @@ namespace GitHubAPIRequests
         [SetUp]
         public void Setup()
         {
-            // the url call
             client = new RestClient("https://api.github.com");
-            // the request to
             request = new RestRequest("/repos/USE YOUR USERNAMEUSE/YOUR REPOSITORY/issues");
-            // authenticator - user / token
             client.Authenticator = new HttpBasicAuthenticator("USE YOUR USERNAME", "USE YOUR TOKEN HERE");
 
         }
@@ -129,12 +126,9 @@ namespace GitHubAPIRequests
         [Test]
         public async Task TestEditIssue()
         {
-            //arrange
             string newTitle = "New Edited from RestSharp";
             request = new RestRequest("/repos/USE YOUR USERNAMEUSE/YOUR REPOSITORY/issues/12");
-            //act
             var issue = await EditIssue(newTitle);
-            //assert
             Assert.That(issue.id > 0);
             Assert.That(issue.number > 0);
             Assert.AreEqual(newTitle, issue.title);
